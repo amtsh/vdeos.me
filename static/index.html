@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html ng-app="app">
+  <head>
+    <meta charset="utf-8">
+    <title>vdeos.me - A better video feed</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/index.css">
+
+
+    <!-- Mobile Specific Metas
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  </head>
+  <body ng-controller="FeedCtrl as feedCtrl">
+    <div class="collapse bg-inverse" id="navbarHeader">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-8 py-4">
+            <h4 class="text-white">About</h4>
+            <p class="text-muted">Finding videos that matches your interests is a real struggle. <br> This project tries to offer a solution using your Twitter network.</p>
+          </div>
+          <div class="col-sm-4 py-4">
+            <h4 class="text-white">Contact</h4>
+            <ul class="list-unstyled">
+              <li><a href="https://twitter.com/debggr" target="_blank" class="text-white">Follow on Twitter</a></li>
+              <li><a href="mailto:shinde13amit@gmail.com?Subject=vdeosme%20feedback" class="text-white">Send Feedback</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="navbar navbar-inverse">
+      <div class="container d-flex justify-content-between">
+        <a href="#" class="navbar-brand">vdeos.me</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </div>
+
+    <section class="jumbotron text-center">
+      <div class="container">
+        <h1 class="jumbotron-heading"><span class="text-muted">A better video feed</span></h1>
+        <br>
+        <p class="lead text-muted">Finding videos that matches your interests is a real struggle. <br>This project tries to offer a solution using your Twitter network.</p>
+        <p>
+          <br>
+          <form class="form-inline justify-content-center">
+            <div class="form-group mx-sm-3">
+              <div class="input-group input-group-lg">
+                <span style="border-radius: 0;" class="input-group-addon" id="basic-addon1">@</span>
+                <input id="username" ng-model="feedCtrl.twitter_username" type="text" class="form-control" placeholder="Your twitter username" aria-describedby="basic-addon1">
+              </div>
+            </div>
+            <button id="getfeed" type="submit" class="btn btn-lg btn-info" ng-click="feedCtrl.populateFeed()">Get my feed</button>
+          </form>
+        </p>
+          <br>
+          <div ng-if="feedCtrl.errors" class="alert alert-danger" role="alert">
+            <p class="">{{feedCtrl.errors}}</p>
+          </div>
+        </p>
+      </div>
+    </section>
+
+    <hr>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm" ng-repeat="item in feedCtrl.feeds">
+          <amp-twitter width="250" height="1" layout="responsive" data-conversation="none" data-tweetid="{{item.id}}"></amp-twitter>
+        </div>
+      </div>
+    </div>
+
+<!-- EXTERNAL SCRIPTS
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<script async src="https://cdn.ampproject.org/v0.js"></script>
+<script src="./bower_components/angular/angular.min.js" charset="utf-8"></script>
+<script async custom-element="amp-twitter" src="https://cdn.ampproject.org/v0/amp-twitter-0.1.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="./js/app.js"></script>
+<script type="text/javascript" src="./js/ApiService.js"></script>
+<script type="text/javascript" src="./js/FeedCtrl.js"></script>
+  </body>
+</html>

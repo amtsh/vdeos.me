@@ -1,0 +1,15 @@
+.DS_Store
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+
+# Client side
+bower_components/
+
+# secrets
+.env
